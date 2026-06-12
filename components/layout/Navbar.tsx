@@ -25,8 +25,8 @@ export function Navbar() {
   const closeMobile = () => setMobileOpen(false);
 
   const filteredLinks = NAV_LINKS.filter(
-    (l) => l.href !== "#why-us" && l.href !== "#contact"
-  );
+  (l) => l.href !== "/#why-us" && l.href !== "/#contact"
+);
 
   return (
     <header
