@@ -65,8 +65,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-white/55 max-w-xs mb-5">
-              Scooter rental, scooty hire, and moped rental across Kathmandu
-              and Lalitpur. Affordable daily, weekly &amp; monthly plans.
+              Scooter and bike rental across Kathmandu and Lalitpur, with affordable daily, weekly and monthly plans and no hidden charges.
             </p>
 
             {/* Social + WhatsApp row */}
@@ -117,6 +116,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {[
                 { label: "Fleet", href: "#fleet" },
+                { label: "Bike Rental", href: "#fleet" },
                 { label: "How It Works", href: "#how-it-works" },
                 { label: "Blog", href: "#blog" },
                 { label: "Contact", href: "#contact" },
@@ -187,7 +187,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/8 pt-7 text-xs text-white/30">
           <p>© 2024 {SITE_NAME}. All rights reserved.</p>
-          <p className="text-white/20">Scooter rental in Kathmandu &amp; Lalitpur, Nepal</p>
+          <p className="text-white/20">Two-wheeler rental in Kathmandu &amp; Lalitpur, Nepal</p>
         </div>
       </div>
     </footer>

@@ -15,8 +15,7 @@ export function FinalCTA() {
             Ready to Ride?
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-text-secondary">
-            Book your scooter today. Available across Lalitpur with instant
-            WhatsApp confirmation.
+            Book a scooter or bike today. Available across Lalitpur with instant WhatsApp confirmation.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button

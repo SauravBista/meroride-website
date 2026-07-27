@@ -15,7 +15,7 @@ export const FLEET_TIERS: FleetTierConfig[] = [
     id: "budget",
     title: "Budget Ride",
     description:
-      "Perfect for short trips around Lalitpur. Lightweight, fuel efficient, easy to ride.",
+      "Perfect for short trips and daily commutes around Lalitpur. Lightweight, fuel-efficient, and easy to ride.",
     accent: "#3b82f6",
     tag: "ECONOMY",
     matches: (name) => name.includes("dio"),
@@ -24,7 +24,7 @@ export const FLEET_TIERS: FleetTierConfig[] = [
     id: "comfort",
     title: "Comfortable Ride",
     description:
-      "Smooth and comfortable for daily commutes and city exploration. Great for all riders.",
+      "Smooth and comfortable for city exploration and valley trips. A great fit for all riders.",
     accent: "#10b981",
     tag: "STANDARD",
     matches: (name) => name.includes("aviator"),
@@ -33,11 +33,12 @@ export const FLEET_TIERS: FleetTierConfig[] = [
     id: "premium",
     title: "Premium Ride",
     description:
-      "Powerful and stylish. Built for riders who want performance and head-turning looks.",
+      "Powerful and stylish, built for riders who want performance across Kathmandu Valley and beyond.",
     accent: "#f59e0b",
     tag: "PREMIUM",
     matches: (name) => name.includes("ntorq") || name.includes("ray zr"),
   },
+
 ];
 
 export type FleetTierCardData = {

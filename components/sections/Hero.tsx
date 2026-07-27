@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 import { BOOKING_URL, WHATSAPP_URL } from "@/lib/constants";
 
 const trustItems = [
-  { value: "4.9★", label: "123+ Google Reviews" },
-  { value: "1 yr", label: "Serving Lalitpur" },
-  { value: "24/7", label: "WhatsApp Support" },
+  "From NPR 1100/day",
+  "No hidden charges",
+  "4.9★",
+  "132+ Google Reviews",
 ];
 
 export function Hero() {
@@ -55,21 +56,14 @@ export function Hero() {
             </span>
           </div>
 
+          <p className="mb-4 text-[15px] uppercase tracking-[0.2em] text-green-300 text-white/70">
+            Kathmandu's Trusted Two-Wheeler Rental
+          </p>
+
           {/* H1 */}
           <h1 className="text-[44px] font-[900] leading-[1.08] tracking-tight text-white lg:text-[68px]">
-            Kathmandu's Trusted{" "}
-            <span className="text-green-400">Scooter Rental</span>
-          </h1>
-
-          {/* Slogan — animated fade-up, delayed */}
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.6, ease: "easeOut" }}
-            className="mt-3 text-[17px] font-medium italic text-white/40 tracking-wide"
-          >
             हाम्रो यात्रा, MeroRide सँग
-          </motion.p>
+          </h1>
 
           {/* Body copy */}
           <motion.p
@@ -78,9 +72,7 @@ export function Hero() {
             transition={{ delay: 0.45, duration: 0.6 }}
             className="mt-5 max-w-[460px] text-[16px] leading-[1.7] text-white/55"
           >
-            Affordable scooty on rent near you in Kathmandu and Lalitpur.{" "}
-            <strong className="font-semibold text-white/75">Daily, weekly, and monthly</strong>{" "}
-            plans : simple booking, transparent pricing.
+            Scooter and bike rental in Kathmandu and Lalitpur. Daily, weekly, and monthly plans with simple booking and transparent pricing.
           </motion.p>
 
           {/* CTA buttons */}
@@ -96,7 +88,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-7 py-3.5 text-[14px] font-bold text-white shadow-[0_0_28px_rgba(74,222,128,0.3)] transition-all duration-200 hover:bg-green-400 hover:shadow-[0_0_36px_rgba(74,222,128,0.45)]"
             >
-              Book Your Scooter
+              Book Your Ride
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -117,12 +109,11 @@ export function Hero() {
             className="mt-12 border-t border-white/8 pt-7"
           >
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {trustItems.map(({ value, label }) => (
-                <div key={label} className="flex flex-col gap-0.5">
-                  <span className="text-[18px] font-extrabold text-white leading-none">
-                    {value}
+              {trustItems.map((item) => (
+                <div key={item} className="flex items-center justify-center rounded-2xl bg-white/5 px-3 py-3 text-center">
+                  <span className="text-[13px] font-semibold text-white/90 leading-tight">
+                    {item}
                   </span>
-                  <span className="text-[11px] text-white/40 leading-tight">{label}</span>
                 </div>
               ))}
             </div>

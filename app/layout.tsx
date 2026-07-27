@@ -16,12 +16,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meroride.com.np"),
-  title: "MeroRide — Scooter Rental in Kathmandu | Scooty on Rent Near Me",
-  description: "Affordable scooter rental in Kathmandu and Lalitpur. Book a petrol scooter or moped on rent near you. Daily, weekly, and monthly scooter rental available. MeroRide — Hamro Yatra MeroRide Sanga.",
-  keywords: ["scooter rental Kathmandu", "scooty on rent near me", "scooter hire Kathmandu", "moped rental Kathmandu", "monthly scooter rental Nepal", "motorized scooter rental Kathmandu"],
+  title: "MeroRide — Scooter & Bike Rental in Kathmandu | Scooty on Rent Lalitpur",
+  description:
+    "Rent a scooter or bike in Kathmandu and Lalitpur from NPR 1100/day. Well-maintained fleet, transparent pricing, instant WhatsApp booking. Daily, weekly and monthly plans available.",
+  keywords: ["scooter rental Kathmandu", "bike rental Kathmandu", "scooty on rent Lalitpur", "motorbike rental Kathmandu", "monthly scooter rental Nepal"],
   openGraph: {
-    title: "MeroRide — Scooter Rental in Kathmandu",
-    description: "Book a petrol scooter on rent in Kathmandu. Daily, weekly & monthly scooter hire available. Ride with MeroRide.",
+    title: "MeroRide — Scooter & Bike Rental in Kathmandu",
+    description:
+      "Rent a scooter or bike in Kathmandu and Lalitpur from NPR 1100/day. Well-maintained fleet, transparent pricing, instant WhatsApp booking. Daily, weekly and monthly plans available.",
     url: "https://meroride.com",
     siteName: "MeroRide",
     locale: "en_NP",

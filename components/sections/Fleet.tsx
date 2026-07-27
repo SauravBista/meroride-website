@@ -12,8 +12,7 @@ export function Fleet() {
             Our Fleet
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-text-secondary">
-            Three tiers of well-maintained scooters for every rider and every
-            journey in Lalitpur.
+            Well-maintained scooters and bikes for every rider and every journey across Kathmandu and Lalitpur.
           </p>
         </ScrollReveal>
 

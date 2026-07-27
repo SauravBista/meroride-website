@@ -6,19 +6,19 @@ const steps = [
     icon: CalendarRange,
     title: "Pick your dates",
     description:
-      "Choose a daily, weekly, or monthly plan — no hourly commitments, no hidden extras.",
+      "Choose a daily, weekly, or monthly plan, with no hourly commitments and no hidden extras.",
     detail: "Daily · Weekly · Monthly",
   },
   {
     icon: Bike,
-    title: "Choose your scooter",
+    title: "Choose your ride",
     description:
-      "Browse live availability and pick from our well-maintained fleet across three tiers.",
-    detail: "3 tiers available",
+      "Browse live availability and pick from our well-maintained fleet of scooters and bikes.",
+    detail: "Live availability",
   },
   {
     icon: Wallet,
-    title: "Secure your ride",
+    title: "Secure your booking",
     description:
       "Pre-pay a NPR 500 deposit online, or message us on WhatsApp to confirm your booking.",
     detail: "Online · WhatsApp",
@@ -28,7 +28,7 @@ const steps = [
     icon: CircleCheck,
     title: "Ride and return",
     description:
-      "Collect from Kusunti, Lalitpur, ride with confidence across the valley, return on time.",
+      "Collect from Kusunti, Lalitpur, ride across the valley with confidence, return on time.",
     detail: "Kusunti-13, Lalitpur",
   },
 ] as const;
@@ -44,7 +44,7 @@ export function HowItWorks() {
             Simple Process
           </span>
           <h2 className="text-3xl font-bold tracking-tight text-white lg:text-4xl">
-            How to rent a scooter with MeroRide
+            How to Rent a Scooter or Bike with MeroRide
           </h2>
           <p className="mt-4 mx-auto max-w-xl text-[15px] leading-relaxed text-white/50">
             Four steps from browsing to riding. No complicated forms, no surprises.

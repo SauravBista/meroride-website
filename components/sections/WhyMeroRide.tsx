@@ -11,33 +11,33 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 const benefits = [
   {
     icon: Wrench,
-    title: "Well Maintained Scooters",
-    description: "Every unit serviced and inspected before it reaches you.",
+    title: "Well-Maintained Fleet",
+    description: "Every scooter and bike is serviced and inspected before your pickup, so there are no surprises on the road.",
   },
   {
     icon: MessageCircle,
     title: "Instant WhatsApp Support",
-    description: "Direct line to our Lalitpur team—no call centres.",
+    description: "Direct line to our Lalitpur team with no call centres and no wait times.",
   },
   {
     icon: Clock,
     title: "Flexible Rental Duration",
-    description: "Hourly, daily, and long-term options for any schedule.",
+    description: "Daily, weekly, and monthly options to fit any schedule or length of stay.",
   },
   {
     icon: MapPin,
-    title: "Based in Lalitpur — Know the Roads",
-    description: "Local expertise for Patan, Kathmandu Valley, and beyond.",
+    title: "Based in Lalitpur, We Know the Roads",
+    description: "Local expertise across Patan, Kathmandu Valley, and every route in between.",
   },
   {
     icon: Receipt,
     title: "Transparent Pricing, No Hidden Fees",
-    description: "Clear rates and NPR 500 deposit—no surprises at pickup.",
+    description: "Clear rates and an NPR 500 deposit. The price you see is the price you pay.",
   },
   {
     icon: Users,
-    title: "119+ Google Reviews",
-    description: "4.9-star rating from riders across Lalitpur and Kathmandu Valley.",
+    title: "123+ Google Reviews",
+    description: "A 4.9-star rating from riders across Kathmandu and Lalitpur.",
   },
 ] as const;
 
