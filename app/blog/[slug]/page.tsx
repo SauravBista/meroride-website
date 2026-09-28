@@ -7,7 +7,15 @@ import { CopyLinkClient } from "@/components/CopyLinkClient";
 import { plainText, truncate } from "@/lib/text"; // NEW
 import { seoDescriptions } from "@/lib/seo-descriptions"; // NEW
 
-const SITE = "https://meroride.com.np"; // NEW
+const SITE = "https://meroride.com.np";
+const AUTHOR = {
+  name: "Saurav Bista",
+  jobTitle: "Operations Lead, MeroRide",
+  image: "/saurav.jpg",
+  // Switch to `${SITE}/about` once that page exists
+  url: SITE,
+  bio: "Saurav leads operations at MeroRide, managing fleet logistics and simplifying vehicle rentals across Nepal. Passionate about writing and mobility, he is dedicated to delivering seamless rental experiences and educating travelers on local transportation.",
+}; // NEW
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -37,6 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "MeroRide", // NEW
       type: "article",
       publishedTime: post.date,
+      authors: [AUTHOR.name],
       images: [{ url: image, alt: title }],
     },
     twitter: { // NEW
@@ -45,6 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [image],
     },
+    authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
   };
 }
 
@@ -87,7 +97,14 @@ const jsonLd = {
       datePublished: post.date,
       dateModified: post.modified ?? post.date,
       mainEntityOfPage: articleUrl,
-      author: { "@type": "Organization", name: "MeroRide", url: SITE },
+      author: {
+  "@type": "Person",
+  name: AUTHOR.name,
+  jobTitle: AUTHOR.jobTitle,
+  url: AUTHOR.url,
+  image: `${SITE}${AUTHOR.image}`,
+  worksFor: { "@id": `${SITE}/#business` },
+},
       publisher: { "@id": `${SITE}/#business` },
     },
     {
@@ -142,7 +159,11 @@ const jsonLd = {
         <h1 className="text-[32px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[40px]">
           {plainTitle}
         </h1>
-
+        <p className="mt-4 text-[14px] text-white/50">
+  By{" "}
+  <span className="font-semibold text-white/80">{AUTHOR.name}</span>
+  , MeroRide
+</p>
         {/* CHANGED: the duplicate excerpt block was removed */}
 
         {/* Featured image — CHANGED: better alt, size attributes */}
@@ -168,21 +189,28 @@ const jsonLd = {
         <div className="mt-14 mb-8 h-px bg-white/8" />
 
         {/* Author + share */}
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-green-500/25 bg-green-500/10 text-[12px] font-bold text-green-400">
-              MR
-            </div>
-            <div>
-              <p className="text-[13px] font-semibold text-white leading-none mb-0.5">
-                MeroRide Team
-              </p>
-              {/* CHANGED: correct location */}
-              <p className="text-[11px] text-white/30">Lalitpur, Nepal</p>
-            </div>
-          </div>
-          <CopyLinkClient />
-        </div>
+        {/* Author + share */}
+<div className="rounded-2xl border border-white/8 bg-[#0a0f2e] p-5">
+  <div className="flex items-start gap-4">
+    <img
+      src={AUTHOR.image}
+      alt={`${AUTHOR.name}, MeroRide`}
+      width={56}
+      height={56}
+      className="h-14 w-14 flex-shrink-0 rounded-full border-2 border-green-500/25 object-cover shadow-md"
+    />
+    <div>
+      <p className="text-[15px] font-semibold text-white">{AUTHOR.name}</p>
+      <p className="mb-2 text-[12px] text-white/40">
+        {AUTHOR.jobTitle} · Lalitpur, Nepal
+      </p>
+      <p className="text-[13px] leading-relaxed text-white/70">{AUTHOR.bio}</p>
+    </div>
+  </div>
+  <div className="mt-4 flex justify-end">
+    <CopyLinkClient />
+  </div>
+</div>
 
         {/* Related posts */}
         {relatedPosts.length > 0 && (
