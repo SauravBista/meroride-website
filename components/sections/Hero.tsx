@@ -61,10 +61,12 @@ export function Hero() {
           </p>
 
           {/* H1 */}
-          <h1 className="text-[44px] font-[900] leading-[1.08] tracking-tight text-white lg:text-[68px]">
-            हाम्रो यात्रा, MeroRide सँग
-          </h1>
-
+          <h1 className="text-[36px] font-[900] leading-[1.1] tracking-tight text-white lg:text-[52px]">
+  Scooter &amp; Bike Rental in Kathmandu &amp; Lalitpur
+  <span className="mt-3 block text-[20px] font-semibold text-green-400 lg:text-[26px]">
+    हाम्रो यात्रा, MeroRide सँग
+  </span>
+</h1>
           {/* Body copy */}
           <motion.p
             initial={{ opacity: 0, y: 12 }}
