@@ -10,9 +10,9 @@ export function getOrganizationJsonLd() {
       "Scooter and bike rental in Kathmandu and Lalitpur, Nepal. Daily, weekly and monthly plans with transparent pricing and WhatsApp booking.",
     url: SITE,
     telephone: "+9779705441746",
-    image: `${SITE}/meroridea.svg`,
-    logo: `${SITE}/meroridea.svg`,
-    priceRange: "NPR 1100-1700",
+    image: `${SITE}/og-image.png`,
+    logo: `${SITE}/logo.png`,
+    priceRange: "NPR 1100-2200",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Kusunti-13",
