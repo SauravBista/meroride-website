@@ -28,9 +28,9 @@ export const metadata: Metadata = {
     locale: "en_NP",
     type: "website",
     url: "/",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "MeroRide scooter rental in Kathmandu and Lalitpur" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "MeroRide scooter rental in Kathmandu and Lalitpur" }],
   },
-  twitter: { card: "summary_large_image", images: ["/og-image.jpg"] },
+  twitter: { card: "summary_large_image", images: ["/og-image.png"] },
 };
 
 const jsonLd = getOrganizationJsonLd();
