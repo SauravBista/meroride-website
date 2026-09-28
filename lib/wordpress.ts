@@ -4,6 +4,7 @@ export type WPPost = {
   excerpt: { rendered: string };
   content?: { rendered: string };
   date: string;
+  modified?: string;
   link: string;
   slug: string;
   jetpack_featured_media_url?: string;
@@ -38,7 +39,7 @@ export async function getBlogPosts(count = 6): Promise<WPPost[]> {
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   try {
     const res = await fetch(
-      `https://public-api.wordpress.com/wp/v2/sites/meroride.wordpress.com/posts?slug=${slug}&_fields=id,title,content,excerpt,date,link,slug,jetpack_featured_media_url`,
+      `https://public-api.wordpress.com/wp/v2/sites/meroride.wordpress.com/posts?slug=${slug}&_fields=id,title,content,excerpt,date,modified,link,slug,jetpack_featured_media_url`,
       { next: { revalidate: 3600 } }
     );
     if (!res.ok) return null;
@@ -83,4 +84,19 @@ export function formatPostDate(date: string): string {
     month: "long",
     day: "numeric",
   });
+}
+
+type SitemapPost = { slug: string; date: string; modified: string };
+
+export async function getAllPostsForSitemap(): Promise<SitemapPost[]> {
+  try {
+    const res = await fetch(
+      "https://public-api.wordpress.com/wp/v2/sites/meroride.wordpress.com/posts?per_page=100&_fields=slug,date,modified",
+      { next: { revalidate: 3600 } }
+    );
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
 }

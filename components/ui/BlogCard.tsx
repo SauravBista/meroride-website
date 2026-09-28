@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { WPPost } from "@/lib/wordpress";
-import { formatPostDate, getFeaturedImage, stripHtml } from "@/lib/wordpress";
+import { formatPostDate, getFeaturedImage } from "@/lib/wordpress";
+import { plainText } from "@/lib/text";
 
 type BlogCardProps = { post: WPPost };
 
 export function BlogCard({ post }: BlogCardProps) {
   const image = getFeaturedImage(post) || null;
-  const excerpt = stripHtml(post.excerpt.rendered);
-  const title = stripHtml(post.title.rendered);
+  const excerpt = plainText(post.excerpt.rendered).replace(/\s*\[…\]\s*$/, "…");
+const title = plainText(post.title.rendered);
 
   return (
     <Link href={`/blog/${post.slug}`} className="group block">

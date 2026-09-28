@@ -1,43 +1,81 @@
-import {
-  BOOKING_URL,
-  CONTACT_EMAIL,
-  SITE_LOCATION,
-  SITE_NAME,
-  SITE_TAGLINE,
-  SITE_URL,
-  WHATSAPP_PHONE,
-} from "@/lib/constants";
+const SITE = "https://meroride.com.np";
 
 export function getOrganizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "AutoRental",
+    "@id": `${SITE}/#business`,
     name: "MeroRide",
-    description: "Petrol scooter rental in Kathmandu and Lalitpur, Nepal. Daily, weekly, and monthly scooter hire available.",
-    url: "https://meroride.com",
+    description:
+      "Scooter and bike rental in Kathmandu and Lalitpur, Nepal. Daily, weekly and monthly plans with transparent pricing and WhatsApp booking.",
+    url: SITE,
     telephone: "+9779705441746",
+    image: `${SITE}/meroridea.svg`,
+    logo: `${SITE}/meroridea.svg`,
+    priceRange: "NPR 1100-1700",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Kathmandu",
+      streetAddress: "Kusunti-13",
+      addressLocality: "Lalitpur",
       addressRegion: "Bagmati Province",
-      addressCountry: "NP"
+      addressCountry: "NP",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 27.7172,
-      longitude: 85.3240
+      latitude: 27.65997,
+      longitude: 85.30915,
     },
-    openingHours: "Mo-Su 08:00-20:00",
-    priceRange: "NPR",
-    serviceArea: { "@type": "City", "name": "Kathmandu" },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "07:30",
+        closes: "19:30",
+      },
+    ],
+    areaServed: [
+      { "@type": "City", name: "Lalitpur" },
+      { "@type": "City", name: "Kathmandu" },
+      { "@type": "City", name: "Bhaktapur" },
+    ],
+    sameAs: [
+      "https://www.facebook.com/meroridenepal/",
+      "https://www.instagram.com/meroridenepal/",
+    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Scooter Rental Plans",
+      name: "Scooter and Bike Rental Plans",
       itemListElement: [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Daily Scooter Rental Kathmandu" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weekly Scooter Rental Kathmandu" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monthly Scooter Rental Kathmandu" } }
-      ]
-    }
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Daily scooter rental in Kathmandu and Lalitpur",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Weekly scooter rental in Kathmandu and Lalitpur",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Monthly scooter rental in Kathmandu and Lalitpur",
+          },
+        },
+      ],
+    },
   };
 }

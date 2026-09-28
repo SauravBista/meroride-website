@@ -16,19 +16,21 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meroride.com.np"),
-  title: "MeroRide — Scooter & Bike Rental in Kathmandu | Scooty on Rent Lalitpur",
+  title: {
+    default: "Scooter & Bike Rental in Kathmandu & Lalitpur | MeroRide",
+    template: "%s | MeroRide",
+  },
   description:
     "Rent a scooter or bike in Kathmandu and Lalitpur from NPR 1100/day. Well-maintained fleet, transparent pricing, instant WhatsApp booking. Daily, weekly and monthly plans available.",
-  keywords: ["scooter rental Kathmandu", "bike rental Kathmandu", "scooty on rent Lalitpur", "motorbike rental Kathmandu", "monthly scooter rental Nepal"],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "MeroRide — Scooter & Bike Rental in Kathmandu",
-    description:
-      "Rent a scooter or bike in Kathmandu and Lalitpur from NPR 1100/day. Well-maintained fleet, transparent pricing, instant WhatsApp booking. Daily, weekly and monthly plans available.",
-    url: "https://meroride.com",
     siteName: "MeroRide",
     locale: "en_NP",
     type: "website",
+    url: "/",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "MeroRide scooter rental in Kathmandu and Lalitpur" }],
   },
+  twitter: { card: "summary_large_image", images: ["/og-image.jpg"] },
 };
 
 const jsonLd = getOrganizationJsonLd();

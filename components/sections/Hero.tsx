@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { BOOKING_URL, WHATSAPP_URL } from "@/lib/constants";
+import { BOOKING_URL, WHATSAPP_URL, GOOGLE_REVIEW_COUNT, GOOGLE_RATING } from "@/lib/constants";
 
 const trustItems = [
   "From NPR 1100/day",
   "No hidden charges",
-  "4.9★",
-  "132+ Google Reviews",
+  `${GOOGLE_RATING}★`,
+  `${GOOGLE_REVIEW_COUNT} Google Reviews`,
 ];
 
 export function Hero() {
@@ -173,8 +173,8 @@ export function Hero() {
               {"★★★★★"}
             </div>
             <div>
-              <p className="text-[12px] font-bold text-white leading-none">4.9 Rating</p>
-              <p className="text-[10px] text-white/40">123+ reviews</p>
+              <p className="text-[12px] font-bold text-white leading-none">{GOOGLE_RATING} Rating</p>
+<p className="text-[10px] text-white/40">{GOOGLE_REVIEW_COUNT} reviews</p>
             </div>
           </motion.div>
         </div>

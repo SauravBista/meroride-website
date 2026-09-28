@@ -8,7 +8,6 @@ import {
   WHATSAPP_URL,
   SITE_LOCATION,
   SITE_NAME,
-  SITE_TAGLINE,
 } from "@/lib/constants";
 
 export function Footer() {
@@ -118,11 +117,11 @@ export function Footer() {
                 { label: "Fleet", href: "#fleet" },
                 { label: "Bike Rental", href: "#fleet" },
                 { label: "How It Works", href: "#how-it-works" },
-                { label: "Blog", href: "#blog" },
+                { label: "Blog", href: "/blog" },
                 { label: "Contact", href: "#contact" },
                 { label: "Book on App", href: BOOKING_URL, external: true },
               ].map(({ label, href, external }) => (
-                <li key={href}>
+                <li key={label}>
                   {external ? (
                     <a
                       href={href}
@@ -162,16 +161,6 @@ export function Footer() {
               <li className="text-white/50">7:30 am – 7:30 pm daily</li>
               <li>
                 <a
-                  href={BLOG_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/50 hover:text-green-400 transition-colors"
-                >
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
                   href={APP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -186,7 +175,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-white/8 pt-7 text-xs text-white/30">
-          <p>© 2024 {SITE_NAME}. All rights reserved.</p>
+          <p>© 2026 {SITE_NAME}. All rights reserved.</p>
           <p className="text-white/20">Two-wheeler rental in Kathmandu &amp; Lalitpur, Nepal</p>
         </div>
       </div>

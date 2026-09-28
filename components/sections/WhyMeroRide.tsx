@@ -7,6 +7,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { GOOGLE_RATING, GOOGLE_REVIEW_COUNT } from "@/lib/constants";
 
 const benefits = [
   {
@@ -36,8 +37,8 @@ const benefits = [
   },
   {
     icon: Users,
-    title: "123+ Google Reviews",
-    description: "A 4.9-star rating from riders across Kathmandu and Lalitpur.",
+    title: `${GOOGLE_REVIEW_COUNT}+ Google Reviews`,
+    description: `A ${GOOGLE_RATING}-star rating from riders across Kathmandu and Lalitpur.`,
   },
 ] as const;
 

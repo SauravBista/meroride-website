@@ -4,6 +4,10 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
 import { CopyLinkClient } from "@/components/CopyLinkClient";
+import { plainText, truncate } from "@/lib/text"; // NEW
+import { seoDescriptions } from "@/lib/seo-descriptions"; // NEW
+
+const SITE = "https://meroride.com.np"; // NEW
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -14,23 +18,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post Not Found | MeroRide" };
 
-  const plainTitle = post.title.rendered.replace(/<[^>]*>/g, "").trim();
-  const plainExcerpt = post.excerpt.rendered
-    .replace(/<[^>]*>/g, "")
-    .trim()
-    .substring(0, 160);
+  // CHANGED: decode entities so &nbsp; never appears in tags
+  const title = plainText(post.title.rendered);
+  const fullTitle = `${title} | MeroRide `;
+  const description =
+    seoDescriptions[slug] ?? truncate(plainText(post.excerpt.rendered), 155);
+  const url = `${SITE}/blog/${slug}`;
+  const image = post.jetpack_featured_media_url || `${SITE}/og-image.png`;
 
   return {
-    title: `${plainTitle} | MeroRide Blog`,
-    description: plainExcerpt,
+    title: { absolute: fullTitle }, // absolute = never doubled by a layout template
+    description,
+    alternates: { canonical: url }, // NEW
     openGraph: {
-      title: `${plainTitle} | MeroRide Blog`,
-      description: plainExcerpt,
+      title: fullTitle,
+      description,
+      url, // NEW
+      siteName: "MeroRide", // NEW
       type: "article",
       publishedTime: post.date,
-      images: post.jetpack_featured_media_url
-        ? [{ url: post.jetpack_featured_media_url }]
-        : [],
+      images: [{ url: image, alt: title }],
+    },
+    twitter: { // NEW
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      images: [image],
     },
   };
 }
@@ -44,7 +57,7 @@ export default async function BlogPost({ params }: Props) {
 
   if (!post) notFound();
 
-  const plainTitle = post.title.rendered.replace(/<[^>]*>/g, "").trim();
+  const plainTitle = plainText(post.title.rendered); // CHANGED
   const wordCount =
     post.content?.rendered.replace(/<[^>]*>/g, "").split(/\s+/).length ?? 0;
   const readTime = Math.max(1, Math.round(wordCount / 200));
@@ -57,8 +70,45 @@ export default async function BlogPost({ params }: Props) {
 
   const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 3);
 
+  // NEW: article structured data
+  const articleUrl = `${SITE}/blog/${slug}`;
+const description =
+  seoDescriptions[slug] ?? truncate(plainText(post.excerpt.rendered), 155);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": `${articleUrl}#article`,
+      headline: plainTitle,
+      description,
+      image: post.jetpack_featured_media_url || `${SITE}/og-image.png`,
+      datePublished: post.date,
+      dateModified: post.modified ?? post.date,
+      mainEntityOfPage: articleUrl,
+      author: { "@type": "Organization", name: "MeroRide", url: SITE },
+      publisher: { "@id": `${SITE}/#business` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE },
+        { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}/blog` },
+        { "@type": "ListItem", position: 3, name: plainTitle, item: articleUrl },
+      ],
+    },
+  ],
+};
+
   return (
     <div className="min-h-screen bg-[#050815]">
+      {/* NEW: structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Top gradient fade */}
       <div className="pointer-events-none fixed inset-x-0 top-0 h-32 bg-gradient-to-b from-[#050815] to-transparent z-10" aria-hidden />
 
@@ -66,7 +116,7 @@ export default async function BlogPost({ params }: Props) {
 
         {/* Back */}
         <Link
-          href="/#blog"
+          href="/blog"
           className="group mb-10 inline-flex items-center gap-2 text-[13px] font-medium text-white/40 transition-colors hover:text-white"
         >
           <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
@@ -88,28 +138,21 @@ export default async function BlogPost({ params }: Props) {
           </span>
         </div>
 
-        {/* Title */}
-        <h1
-          className="text-[32px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[40px]"
-          dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-        />
+        {/* Title — CHANGED: plain text instead of raw HTML */}
+        <h1 className="text-[32px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[40px]">
+          {plainTitle}
+        </h1>
 
-        {/* Excerpt / lead */}
-        {post.excerpt?.rendered && (
-          <div
-            className="mt-5 border-l-2 border-green-500/40 pl-4 text-[15px] leading-relaxed text-white/50"
-            dangerouslySetInnerHTML={{
-              __html: post.excerpt.rendered.replace(/<a[^>]*>.*?<\/a>/g, ""),
-            }}
-          />
-        )}
+        {/* CHANGED: the duplicate excerpt block was removed */}
 
-        {/* Featured image */}
+        {/* Featured image — CHANGED: better alt, size attributes */}
         {post.jetpack_featured_media_url && (
           <div className="relative mt-8 w-full overflow-hidden rounded-2xl border border-white/8 bg-[#0a0f2e]">
             <img
               src={post.jetpack_featured_media_url}
-              alt={plainTitle}
+              alt={`${plainTitle} - MeroRide scooter rental, Lalitpur`}
+              width={1200}
+              height={630}
               className="h-auto w-full object-cover"
             />
           </div>
@@ -134,7 +177,8 @@ export default async function BlogPost({ params }: Props) {
               <p className="text-[13px] font-semibold text-white leading-none mb-0.5">
                 MeroRide Team
               </p>
-              <p className="text-[11px] text-white/30">Kathmandu, Nepal</p>
+              {/* CHANGED: correct location */}
+              <p className="text-[11px] text-white/30">Lalitpur, Nepal</p>
             </div>
           </div>
           <CopyLinkClient />
@@ -153,10 +197,10 @@ export default async function BlogPost({ params }: Props) {
                   href={`/blog/${related.slug}`}
                   className="group flex items-center justify-between gap-4 py-4"
                 >
-                  <span
-                    className="text-[14px] leading-snug text-white/60 transition-colors group-hover:text-white"
-                    dangerouslySetInnerHTML={{ __html: related.title.rendered }}
-                  />
+                  {/* CHANGED: plain text instead of raw HTML */}
+                  <span className="text-[14px] leading-snug text-white/60 transition-colors group-hover:text-white">
+                    {plainText(related.title.rendered)}
+                  </span>
                   <ArrowRight className="h-3.5 w-3.5 flex-shrink-0 text-green-400 transition-transform group-hover:translate-x-1" />
                 </Link>
               ))}
@@ -167,7 +211,7 @@ export default async function BlogPost({ params }: Props) {
         {/* Back to blog — bottom */}
         <div className="mt-12 text-center">
           <Link
-            href="/#blog"
+            href="/blog"
             className="inline-flex items-center gap-2 rounded-full border border-white/12 px-5 py-2.5 text-[13px] font-medium text-white/50 transition-all hover:border-white/25 hover:text-white"
           >
             <ArrowLeft className="h-3.5 w-3.5" />

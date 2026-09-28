@@ -1,13 +1,13 @@
 export const SITE_NAME = "MeroRide";
 export const SITE_URL = "https://meroride.com.np";
 export const SITE_TAGLINE = "Hamro Yatra, MeroRide Sanga";
-export const SITE_LOCATION = "Kathmandu, Nepal";
+export const SITE_LOCATION = "Kusunti-13, Lalitpur, Nepal";
 
 export const BOOKING_URL = "https://app.meroride.com.np/book";
 export const APP_URL = "https://app.meroride.com.np";
 export const VEHICLES_API_URL =
   "https://app.meroride.com.np/api/vehicles/available";
-export const BLOG_URL = "https://meroride.wordpress.com";
+export const BLOG_URL = "/blog";
 export const BLOG_API_URL =
   "https://blog.meroride.com.np/wp-json/wp/v2/posts?_embed&per_page=6";
 
@@ -19,10 +19,10 @@ export const CONTACT_PHONES = [
 ] as const;
 export const CONTACT_EMAIL = "meroridenepal@gmail.com";
 
-export const GOOGLE_REVIEW_COUNT = 119;
+export const GOOGLE_REVIEW_COUNT = 157;
 export const GOOGLE_RATING = 4.9;
 export const RELIABLE_RIDES_PERCENT = 99;
-export const YEARS_IN_LALITPUR = "1+ Year in Lalitpur";
+export const YEARS_IN_LALITPUR = "2+ Year in Lalitpur";
 
 export const NAV_LINKS = [
   { href: "/#home", label: "Home" },
@@ -30,7 +30,7 @@ export const NAV_LINKS = [
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/#why-us", label: "Why Us" },
   { href: "/#reviews", label: "Reviews" },
-  { href: "/#blog", label: "Blog" },
+  { href: "/blog", label: "Blog" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
