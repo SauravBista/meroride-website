@@ -116,6 +116,7 @@ export function Footer() {
               {[
                 { label: "Fleet", href: "#fleet" },
                 { label: "Bike Rental", href: "#fleet" },
+                { label: "Scooter Rental", href: "/scooter-rental-kathmandu" },
                 { label: "How It Works", href: "#how-it-works" },
                 { label: "Blog", href: "/blog" },
                 { label: "Contact", href: "#contact" },
