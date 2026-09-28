@@ -43,11 +43,11 @@ export function Hero() {
 
         {/* ── Left column ── */}
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="flex w-full flex-col lg:w-[54%]"
-        >
+  initial={{ y: 28 }}
+  animate={{ y: 0 }}
+  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+  className="flex w-full flex-col lg:w-[54%]"
+>
           {/* Location badge */}
           <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-green-500/25 bg-green-500/10 px-3.5 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -69,8 +69,8 @@ export function Hero() {
 </h1>
           {/* Body copy */}
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 12 }}
+animate={{ y: 0 }}
             transition={{ delay: 0.45, duration: 0.6 }}
             className="mt-5 max-w-[460px] text-[16px] leading-[1.7] text-white/55"
           >
@@ -79,8 +79,8 @@ export function Hero() {
 
           {/* CTA buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 12 }}
+animate={{ y: 0 }}
             transition={{ delay: 0.55, duration: 0.55 }}
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
