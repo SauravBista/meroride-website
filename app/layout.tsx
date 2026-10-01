@@ -7,6 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { getOrganizationJsonLd } from "@/lib/json-ld";
 import "./globals.css";
+import { CurrencyProvider } from "@/components/CurrencyProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,13 +48,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SmoothScroll>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <FloatingWhatsApp />
-          <BackToTop />
-        </SmoothScroll>
+         <CurrencyProvider>
+    <SmoothScroll>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+      <FloatingWhatsApp />
+      <BackToTop />
+    </SmoothScroll>
+  </CurrencyProvider>
       </body>
     </html>
   );
