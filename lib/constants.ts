@@ -28,6 +28,7 @@ export const NAV_LINKS = [
   { href: "/#home", label: "Home" },
   { href: "/#fleet", label: "Fleet" },
   { label: "Scooter Rental", href: "/scooter-rental-kathmandu" },
+  { label: "Bike Rental", href: "/bike-rental-kathmandu" },
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/#why-us", label: "Why Us" },
   { href: "/#reviews", label: "Reviews" },

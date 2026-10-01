@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { BackToTop } from "@/components/layout/BackToTop";
+import { CurrencyProvider } from "@/components/CurrencyProvider";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { getOrganizationJsonLd } from "@/lib/json-ld";
 import "./globals.css";
-import { CurrencyProvider } from "@/components/CurrencyProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,15 +48,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-         <CurrencyProvider>
-    <SmoothScroll>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-      <FloatingWhatsApp />
-      <BackToTop />
-    </SmoothScroll>
-  </CurrencyProvider>
+        <CurrencyProvider>
+          <SmoothScroll>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <FloatingWhatsApp />
+            <BackToTop />
+          </SmoothScroll>
+        </CurrencyProvider>
       </body>
     </html>
   );

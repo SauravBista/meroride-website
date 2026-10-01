@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { Price } from "@/components/Price";
 import { BOOKING_URL, WHATSAPP_URL } from "@/lib/constants";
 
 const SITE = "https://meroride.com.np";
@@ -58,13 +60,17 @@ const plans = [
   { days: 15, off: 0.15, label: "15 days" },
   { days: 30, off: 0.25, label: "30 days" },
 ];
-const npr = (n: number) => `NPR ${Math.round(n).toLocaleString("en-US")}`;
 const total = (daily: number, days: number, off: number) => daily * days * (1 - off);
 
-const faqs = [
+const faqs: {
+  q: string;
+  a: string;
+  displayAnswer?: ReactNode;
+}[] = [
   {
     q: "How much does it cost to rent a motorbike in Kathmandu?",
     a: "Bikes start from NPR 2200 per day for the Bajaj Pulsar NS 200 and NPR 2300 for the Yamaha FZ V2 150. Rentals of 7 days get 10% off, 15 days get 15% off and 30 days get 25% off.",
+    displayAnswer: <>Bikes start from <Price amountNpr={2200} /> per day for the Bajaj Pulsar NS 200 and <Price amountNpr={2300} /> for the Yamaha FZ V2 150. Rentals of 7 days get 10% off, 15 days get 15% off and 30 days get 25% off.</>,
   },
   {
     q: "What licence do I need to rent a motorbike?",
@@ -81,6 +87,7 @@ const faqs = [
   {
     q: "What's the deposit for a motorbike?",
     a: "Locals leave an original ID document plus a cheque or cash deposit. Foreign visitors leave their original passport, or pay a cash deposit of NPR 15,000 instead of leaving their passport.",
+    displayAnswer: <>Locals leave an original ID document plus a cheque or cash deposit. Foreign visitors leave their original passport, or pay a cash deposit of <Price amountNpr={15000} /> instead of leaving their passport.</>,
   },
   {
     q: "Is fuel included?",
@@ -154,7 +161,7 @@ export default function BikeRentalKathmandu() {
         <h1 className="text-4xl font-black leading-tight tracking-tight lg:text-5xl">
           Motorbike Rental in Kathmandu
           <span className="mt-3 block text-xl font-semibold text-green-400 lg:text-2xl">
-            Starting from NPR 2200 per day
+            Starting from <Price amountNpr={2200} /> per day
           </span>
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
@@ -208,7 +215,7 @@ export default function BikeRentalKathmandu() {
                 <h3 className="mt-1 text-xl font-bold">{b.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">{b.blurb}</p>
                 <p className="mt-4 text-2xl font-black">
-                  {npr(b.daily)}
+                  <Price amountNpr={b.daily} />
                   <span className="text-sm font-normal text-white/50"> /day</span>
                 </p>
               </div>
@@ -241,14 +248,14 @@ export default function BikeRentalKathmandu() {
               {bikes.map((b) => (
                 <tr key={b.name} className="border-t border-white/10">
                   <th scope="row" className="px-5 py-4 font-semibold">{b.name}</th>
-                  <td className="px-5 py-4">{npr(b.daily)}</td>
+                  <td className="px-5 py-4"><Price amountNpr={b.daily} /></td>
                   {plans.map((p) => (
                     <td key={p.days} className="px-5 py-4">
                       <span className="font-semibold">
-                        {npr(total(b.daily, p.days, p.off))}
+                        <Price amountNpr={total(b.daily, p.days, p.off)} />
                       </span>
                       <span className="block text-xs text-white/50">
-                        {npr(b.daily * (1 - p.off))}/day
+                        <Price amountNpr={b.daily * (1 - p.off)} />/day
                       </span>
                     </td>
                   ))}
@@ -280,7 +287,7 @@ export default function BikeRentalKathmandu() {
           <li>A citizenship card or passport for locals</li>
           <li>
             Locals: original ID document plus a cheque or cash deposit. Foreigners: original
-            passport, or a cash deposit of NPR 15,000 instead of leaving your passport.
+            passport, or a cash deposit of <Price amountNpr={15000} /> instead of leaving your passport.
             {/* TODO: confirm this is "or" (passport OR 15k cash) and not both required */}
           </li>
         </ul>
@@ -293,7 +300,7 @@ export default function BikeRentalKathmandu() {
           {faqs.map((f) => (
             <div key={f.q} className="rounded-xl border border-white/10 bg-[#0a0f2e]/60 p-6">
               <h3 className="text-lg font-semibold">{f.q}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{f.a}</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">{f.displayAnswer ?? f.a}</p>
             </div>
           ))}
         </div>

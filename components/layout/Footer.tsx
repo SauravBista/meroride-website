@@ -115,7 +115,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {[
                 { label: "Fleet", href: "#fleet" },
-                { label: "Bike Rental", href: "#fleet" },
+                { label: "Bike Rental", href: "/bike-rental-kathmandu" },
                 { label: "Scooter Rental", href: "/scooter-rental-kathmandu" },
                 { label: "How It Works", href: "#how-it-works" },
                 { label: "Blog", href: "/blog" },

@@ -1,9 +1,18 @@
 "use client";
 
-import { useCurrency } from "@/components/CurrencyProvider";
 import { formatAmount } from "@/lib/currency";
+import { useCurrency } from "@/components/CurrencyProvider";
 
-export function Price({ amountNpr, className }: { amountNpr: number; className?: string }) {
+export function Price({ amountNpr }: { amountNpr: number }) {
   const { currency, rates } = useCurrency();
-  return <span className={className}>{formatAmount(amountNpr, currency, rates)}</span>;
+
+  if (currency !== "NPR" && !rates) {
+    return (
+      <span aria-label={`Price unavailable in ${currency}`}>
+        {currency} rate unavailable
+      </span>
+    );
+  }
+
+  return <>{formatAmount(amountNpr, currency, rates)}</>;
 }

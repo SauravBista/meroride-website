@@ -1,4 +1,5 @@
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Price } from "@/components/Price";
 
 const faqData = [
   {
@@ -23,7 +24,7 @@ const faqData = [
   },
   {
     question: "How much does scooter or bike rental cost in Kathmandu?",
-    answer: "MeroRide scooter rental starts from NPR 1100/day. Bike rental rates vary by model. Weekly and monthly plans offer the best per-day rates, and all pricing is fully transparent with no hidden fees or surprise charges at pickup.",
+    answer: <>MeroRide scooter rental starts from <Price amountNpr={1100} />/day. Bike rental rates vary by model. Weekly and monthly plans offer the best per-day rates, and all pricing is fully transparent with no hidden fees or surprise charges at pickup.</>,
   },
   {
     question: "What documents do I need to rent a scooter or bike?",

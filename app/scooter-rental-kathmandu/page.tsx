@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { Price } from "@/components/Price";
 import { BOOKING_URL, WHATSAPP_URL } from "@/lib/constants";
 
 const SITE = "https://meroride.com.np";
@@ -72,13 +74,17 @@ const plans = [
   { days: 15, off: 0.15, label: "15 days" },
   { days: 30, off: 0.25, label: "30 days" },
 ];
-const npr = (n: number) => `NPR ${Math.round(n).toLocaleString("en-US")}`;
 const total = (daily: number, days: number, off: number) => daily * days * (1 - off);
 
-const faqs = [
+const faqs: {
+  q: string;
+  a: string;
+  displayAnswer?: ReactNode;
+}[] = [
   {
     q: "How much does it cost to rent a scooter in Kathmandu?",
     a: "Scooters start from NPR 1100 per day for the Honda Dio, NPR 1300 for the Aviator, NPR 1500 for the Ntorq and NPR 1600 for the Ray ZR. Rentals of 7 days get 10% off, 15 days get 15% off and 30 days get 25% off. A helmet is included.",
+    displayAnswer: <>Scooters start from <Price amountNpr={1100} /> per day for the Honda Dio, <Price amountNpr={1300} /> for the Aviator, <Price amountNpr={1500} /> for the Ntorq and <Price amountNpr={1600} /> for the Ray ZR. Rentals of 7 days get 10% off, 15 days get 15% off and 30 days get 25% off. A helmet is included.</>,
   },
   {
     q: "Where do I pick up the scooter?",
@@ -107,6 +113,7 @@ const faqs = [
   {
     q: "Can I ride outside Kathmandu Valley?",
     a: "Yes. Riding outside Kathmandu, Lalitpur and Bhaktapur costs NPR 100 extra per day on scooters. Tell us before you book so we can note your route, especially for places such as Nagarkot, Dhulikhel or Godavari.",
+    displayAnswer: <>Yes. Riding outside Kathmandu, Lalitpur and Bhaktapur costs <Price amountNpr={100} /> extra per day on scooters. Tell us before you book so we can note your route, especially for places such as Nagarkot, Dhulikhel or Godavari.</>,
   },
 ];
 
@@ -168,7 +175,7 @@ export default function ScooterRentalKathmandu() {
         <h1 className="text-4xl font-black leading-tight tracking-tight lg:text-5xl">
           Scooter Rental in Kathmandu
           <span className="mt-3 block text-xl font-semibold text-green-400 lg:text-2xl">
-            Starting from NPR 1100 per day
+            Starting from <Price amountNpr={1100} /> per day
           </span>
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/70">
@@ -218,7 +225,7 @@ export default function ScooterRentalKathmandu() {
                 <h3 className="mt-1 text-xl font-bold">{s.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">{s.blurb}</p>
                 <p className="mt-4 text-2xl font-black">
-                  {npr(s.daily)}
+                  <Price amountNpr={s.daily} />
                   <span className="text-sm font-normal text-white/50"> /day</span>
                 </p>
               </div>
@@ -258,14 +265,14 @@ export default function ScooterRentalKathmandu() {
               {scooters.map((s) => (
                 <tr key={s.name} className="border-t border-white/10">
                   <th scope="row" className="px-5 py-4 font-semibold">{s.name}</th>
-                  <td className="px-5 py-4">{npr(s.daily)}</td>
+                  <td className="px-5 py-4"><Price amountNpr={s.daily} /></td>
                   {plans.map((p) => (
                     <td key={p.days} className="px-5 py-4">
                       <span className="font-semibold">
-                        {npr(total(s.daily, p.days, p.off))}
+                        <Price amountNpr={total(s.daily, p.days, p.off)} />
                       </span>
                       <span className="block text-xs text-white/50">
-                        {npr(s.daily * (1 - p.off))}/day
+                        <Price amountNpr={s.daily * (1 - p.off)} />/day
                       </span>
                     </td>
                   ))}
@@ -275,7 +282,7 @@ export default function ScooterRentalKathmandu() {
           </table>
         </div>
         <p className="mt-4 text-sm text-white/60">
-          Fuel is not included. Riding outside Kathmandu, Lalitpur and Bhaktapur adds NPR 100 per day. Thinking of a longer stay? See{" "}
+          Fuel is not included. Riding outside Kathmandu, Lalitpur and Bhaktapur adds <Price amountNpr={100} /> per day. Thinking of a longer stay? See{" "}
           <Link href="/blog/monthly-scooter-rental-guide" className="text-green-400 underline">
             whether monthly rental is worth it
           </Link>{" "}
@@ -301,7 +308,7 @@ export default function ScooterRentalKathmandu() {
           We also deliver within Kathmandu Valley for a delivery charge. Book delivery at
           least 24 hours ahead. The time depends on when our delivery person is available,
           so message us on WhatsApp with your location and we will confirm the charge and
-          the slot. Trips outside Kathmandu, Lalitpur and Bhaktapur cost NPR 100 extra per
+          the slot. Trips outside Kathmandu, Lalitpur and Bhaktapur cost <Price amountNpr={100} /> extra per
           day on scooters.
         </p>
         <p className="mt-4 max-w-3xl text-sm text-white/60">
@@ -331,7 +338,7 @@ export default function ScooterRentalKathmandu() {
           {faqs.map((f) => (
             <div key={f.q} className="rounded-xl border border-white/10 bg-[#0a0f2e]/60 p-6">
               <h3 className="text-lg font-semibold">{f.q}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{f.a}</p>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">{f.displayAnswer ?? f.a}</p>
             </div>
           ))}
         </div>

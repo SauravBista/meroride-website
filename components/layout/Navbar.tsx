@@ -73,7 +73,7 @@ export function Navbar() {
 
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 xl:flex">
-            <CurrencySelector />
+          <CurrencySelector />
           {/* WhatsApp ghost button */}
           <a
             href={WHATSAPP_URL}
@@ -115,13 +115,10 @@ export function Navbar() {
 
       {/* Mobile drawer */}
       <div
-        className={`xl:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? "max-h-[760px] opacity-100" : "max-h-0 opacity-0"
+        className={`xl:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
           }`}
       >
         <div className="border-t border-white/8 bg-[#050815] px-5 pt-4 pb-6">
-        <div className="mb-4 flex justify-end">
-    <CurrencySelector />
-  </div>
           <div className="flex flex-col gap-0.5 mb-5">
             {NAV_LINKS.map((link) => (
               <Link
@@ -137,6 +134,7 @@ export function Navbar() {
 
           {/* Mobile CTA buttons */}
           <div className="flex flex-col gap-3">
+            <CurrencySelector />
             <a
               href={BOOKING_URL}
               target="_blank"

@@ -1,26 +1,36 @@
-export type CurrencyCode = "NPR" | "USD" | "INR" | "GBP";
+export const CURRENCIES = ["NPR", "USD", "INR", "GBP"] as const;
 
-export const CURRENCIES: { code: CurrencyCode; label: string; symbol: string }[] = [
-  { code: "NPR", label: "NPR", symbol: "NPR " },
-  { code: "USD", label: "USD", symbol: "$" },
-  { code: "INR", label: "INR", symbol: "₹" },
-  { code: "GBP", label: "GBP", symbol: "£" },
-];
+export type Currency = (typeof CURRENCIES)[number];
+export type CurrencyRates = Record<Currency, number>;
 
-export type Rates = Record<Exclude<CurrencyCode, "NPR">, number>; // 1 NPR = rates[CODE] units
-
-function convert(amountNpr: number, currency: CurrencyCode, rates: Rates | null): number {
-  if (currency === "NPR" || !rates) return amountNpr;
-  return amountNpr * rates[currency];
+export function isCurrency(value: unknown): value is Currency {
+  return typeof value === "string" && CURRENCIES.some((currency) => currency === value);
 }
 
-// Foreign amounts are prefixed with "~" since the actual charge is always in NPR
-// and the live rate is an estimate, not what the bank will apply.
-export function formatAmount(amountNpr: number, currency: CurrencyCode, rates: Rates | null): string {
-  if (currency === "NPR" || !rates) {
-    return `NPR ${Math.round(amountNpr).toLocaleString("en-US")}`;
+const LOCALES: Record<Currency, string> = {
+  NPR: "en-NP",
+  USD: "en-US",
+  INR: "en-IN",
+  GBP: "en-GB",
+};
+
+export function formatAmount(
+  amountNpr: number,
+  currency: Currency,
+  rates: CurrencyRates | null,
+): string {
+  if (!Number.isFinite(amountNpr)) {
+    throw new RangeError("Amount must be a finite number");
   }
-  const value = convert(amountNpr, currency, rates);
-  const symbol = CURRENCIES.find((c) => c.code === currency)?.symbol ?? "";
-  return `~${symbol}${Math.round(value).toLocaleString("en-US")}`;
+
+  const rate = currency === "NPR" ? 1 : rates?.[currency];
+  if (rate === undefined || !Number.isFinite(rate) || rate <= 0) {
+    throw new Error(`Exchange rate for ${currency} is unavailable`);
+  }
+
+  return new Intl.NumberFormat(LOCALES[currency], {
+    style: "currency",
+    currency,
+    maximumFractionDigits: currency === "NPR" ? 0 : 2,
+  }).format(amountNpr * rate);
 }

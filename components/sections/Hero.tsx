@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Price } from "@/components/Price";
 import { BOOKING_URL, WHATSAPP_URL, GOOGLE_REVIEW_COUNT, GOOGLE_RATING } from "@/lib/constants";
 
 const trustItems = [
-  "From NPR 1100/day",
+  <>From <Price amountNpr={1100} />/day</>,
   "No hidden charges",
   `${GOOGLE_RATING}★`,
   `${GOOGLE_REVIEW_COUNT} Google Reviews`,
@@ -111,8 +112,8 @@ animate={{ y: 0 }}
             className="mt-12 border-t border-white/8 pt-7"
           >
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {trustItems.map((item) => (
-                <div key={item} className="flex items-center justify-center rounded-2xl bg-white/5 px-3 py-3 text-center">
+              {trustItems.map((item, index) => (
+                <div key={index} className="flex items-center justify-center rounded-2xl bg-white/5 px-3 py-3 text-center">
                   <span className="text-[13px] font-semibold text-white/90 leading-tight">
                     {item}
                   </span>
@@ -158,7 +159,7 @@ animate={{ y: 0 }}
             className="absolute bottom-4 left-0 z-20 rounded-2xl border border-white/10 bg-[#0a0f2e]/90 px-4 py-3 shadow-xl backdrop-blur-md lg:bottom-10 lg:left-4"
           >
             <p className="text-[22px] font-black text-white leading-none">
-              From <span className="text-green-400">1100</span>
+              From <span className="text-green-400"><Price amountNpr={1100} /></span>
               <span className="text-[13px] font-normal text-white/40">/day</span>
             </p>
             <p className="mt-0.5 text-[11px] text-white/40">No hidden charges</p>
