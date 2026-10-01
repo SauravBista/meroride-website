@@ -8,7 +8,7 @@ const URL = `${SITE}/scooter-rental-kathmandu`;
 const CLOUD = "https://res.cloudinary.com/dcgl3qfg2/image/upload";
 
 export const metadata: Metadata = {
-  title: "Scooter Rental in Kathmandu Valley from NPR 1100/day | MeroRide",
+title: { absolute: "Scooter Rental in Kathmandu Valley from NPR 1100/day | MeroRide" },
   description:
     "Rent a Honda Dio, Aviator, TVS Ntorq or Ray ZR in Kathmandu Valley. Pick up in Lalitpur or get it delivered. Helmet included, weekly and monthly discounts.",
   alternates: { canonical: URL },

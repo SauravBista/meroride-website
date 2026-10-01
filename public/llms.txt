@@ -1,0 +1,21 @@
+# MeroRide
+
+> MeroRide is a scooter and bike rental shop in Kusunti, Lalitpur, Nepal, serving Kathmandu Valley. Riders can book by WhatsApp or on the website.
+
+## Main pages
+
+- [Scooter rental in Kathmandu](https://meroride.com.np/scooter-rental-kathmandu): prices, required documents and available scooters
+- [Blog](https://meroride.com.np/blog): rental and riding guides for Kathmandu Valley
+
+## Guides
+
+- [Bike rent in Kathmandu: complete guide](https://meroride.com.np/blog/bike-rent-in-kathmandu)
+- [Honda Dio vs TVS Ntorq](https://meroride.com.np/blog/honda-dio-vs-tvs-ntorq)
+- [How to rent a scooty in Lalitpur](https://meroride.com.np/blog/how-to-rent-scooty-lalitpur)
+- [Monthly scooter rental guide](https://meroride.com.np/blog/monthly-scooter-rental-guide)
+- [Ride sharing vs scooter rental in Kathmandu](https://meroride.com.np/blog/ride-sharing-vs-scooter-rental-kathmandu)
+
+## Contact
+
+- WhatsApp: +977 970-5441746
+- Location: Kusunti, Lalitpur, Nepal
