@@ -33,7 +33,7 @@ const benefits = [
   {
     icon: Receipt,
     title: "Transparent Pricing, No Hidden Fees",
-    description: "Clear rates and an NPR 500 deposit. The price you see is the price you pay.",
+    description: <>Clear rates and a refundable deposit. The price you see is the price you pay.</>,
   },
   {
     icon: Users,

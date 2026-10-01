@@ -1,5 +1,6 @@
 import { Bike, CalendarRange, CircleCheck, Wallet } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Price } from "@/components/Price";
 
 const steps = [
   {
@@ -19,8 +20,9 @@ const steps = [
   {
     icon: Wallet,
     title: "Secure your booking",
-    description:
-      "Pre-pay a NPR 500 deposit online, or message us on WhatsApp to confirm your booking.",
+    description: (
+      <>Pre-pay a <Price amountNpr={500} /> deposit online, or message us on WhatsApp to confirm your booking.</>
+    ),
     detail: "Online · WhatsApp",
     whatsapp: true,
   },

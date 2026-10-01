@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BOOKING_URL, NAV_LINKS, SITE_NAME, WHATSAPP_URL } from "@/lib/constants";
+import { CurrencySelector } from "@/components/CurrencySelector";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -72,6 +73,7 @@ export function Navbar() {
 
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 xl:flex">
+          <CurrencySelector />
           {/* WhatsApp ghost button */}
           <a
             href={WHATSAPP_URL}
@@ -132,6 +134,7 @@ export function Navbar() {
 
           {/* Mobile CTA buttons */}
           <div className="flex flex-col gap-3">
+            <CurrencySelector />
             <a
               href={BOOKING_URL}
               target="_blank"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { BackToTop } from "@/components/layout/BackToTop";
+import { CurrencyProvider } from "@/components/CurrencyProvider";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
@@ -47,13 +48,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <SmoothScroll>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <FloatingWhatsApp />
-          <BackToTop />
-        </SmoothScroll>
+        <CurrencyProvider>
+          <SmoothScroll>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <FloatingWhatsApp />
+            <BackToTop />
+          </SmoothScroll>
+        </CurrencyProvider>
       </body>
     </html>
   );
