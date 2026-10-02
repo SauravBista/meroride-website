@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { BOOKING_URL, WHATSAPP_URL, GOOGLE_REVIEW_COUNT, GOOGLE_RATING } from "@/lib/constants";
+import { Price } from "@/components/Price";
 
 const trustItems = [
-  "From NPR 1100/day",
+  <Price amountNpr={1100} />,
   "No hidden charges",
   `${GOOGLE_RATING}★`,
   `${GOOGLE_REVIEW_COUNT} Google Reviews`,
@@ -156,7 +157,7 @@ animate={{ y: 0 }}
             className="absolute bottom-4 left-0 z-20 rounded-2xl border border-white/10 bg-[#0a0f2e]/90 px-4 py-3 shadow-xl backdrop-blur-md lg:bottom-10 lg:left-4"
           >
             <p className="text-[22px] font-black text-white leading-none">
-              From <span className="text-green-400">1100</span>
+              From <span className="text-green-400"><Price amountNpr={1100} /></span>
               <span className="text-[13px] font-normal text-white/40">/day</span>
             </p>
             <p className="mt-0.5 text-[11px] text-white/40">No hidden charges</p>
