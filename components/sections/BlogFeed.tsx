@@ -40,8 +40,7 @@ async function BlogGrid() {
         <div className="mt-12 text-center">
           <a
             href={BLOG_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            
             className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-[13px] font-semibold text-white/60 transition-all duration-200 hover:border-white/30 hover:text-white"
           >
             View all articles

@@ -26,7 +26,6 @@ export const YEARS_IN_LALITPUR = "2+ Year in Lalitpur";
 
 export const NAV_LINKS = [
   { href: "/#home", label: "Home" },
-  { href: "/#fleet", label: "Fleet" },
   { label: "Scooter Rental", href: "/scooter-rental-kathmandu" },
   { label: "Bike Rental", href: "/bike-rental-kathmandu" },
   { href: "/#how-it-works", label: "How It Works" },
