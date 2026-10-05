@@ -50,7 +50,6 @@ export function Navbar() {
             width={34}
             height={34}
             className="h-[34px] w-auto"
-            priority
           />
           <span className="text-[18px] font-extrabold tracking-tight">
             <span className="text-white">Mero</span>

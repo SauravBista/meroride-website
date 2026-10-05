@@ -62,7 +62,6 @@ export function FleetTierCard({
               style={{ objectFit: "cover", objectPosition: "center" }}
               sizes="(max-width: 768px) 100vw, 33vw"
               unoptimized={isRemote}
-              priority
             />
           </motion.div>
         </AnimatePresence>

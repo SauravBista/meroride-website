@@ -1,15 +1,12 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { BOOKING_URL, WHATSAPP_URL, GOOGLE_REVIEW_COUNT, GOOGLE_RATING } from "@/lib/constants";
+import { BOOKING_URL, GOOGLE_REVIEW_COUNT, GOOGLE_RATING } from "@/lib/constants";
 import { Price } from "@/components/Price";
 
 const trustItems = [
-  <Price amountNpr={1100} />,
-  "No hidden charges",
-  `${GOOGLE_RATING}★`,
-  `${GOOGLE_REVIEW_COUNT} Google Reviews`,
+  { key: "starting-price", content: <Price amountNpr={1100} /> },
+  { key: "no-hidden-charges", content: "No hidden charges" },
+  { key: "rating", content: `${GOOGLE_RATING}★` },
+  { key: "review-count", content: `${GOOGLE_REVIEW_COUNT} Google Reviews` },
 ];
 
 export function Hero() {
@@ -43,12 +40,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-10 px-5 lg:flex-row lg:gap-16 lg:px-10">
 
         {/* ── Left column ── */}
-        <motion.div
-  initial={{ y: 28 }}
-  animate={{ y: 0 }}
-  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-  className="flex w-full flex-col lg:w-[54%]"
->
+        <div className="flex w-full flex-col lg:w-[54%]">
           {/* Location badge */}
           <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-green-500/25 bg-green-500/10 px-3.5 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -58,7 +50,7 @@ export function Hero() {
           </div>
 
           <p className="mb-4 text-[15px] uppercase tracking-[0.2em] text-green-300 text-white/70">
-            Kathmandu's Trusted Two-Wheeler Rental
+            Kathmandu&apos;s Trusted Two-Wheeler Rental
           </p>
 
           {/* H1 */}
@@ -69,20 +61,14 @@ export function Hero() {
   </span>
 </h1>
           {/* Body copy */}
-          <motion.p
-            initial={{ y: 12 }}
-animate={{ y: 0 }}
-            transition={{ delay: 0.45, duration: 0.6 }}
+          <p
             className="mt-5 max-w-[460px] text-[16px] leading-[1.7] text-white/55"
           >
             Scooter and bike rental in Kathmandu and Lalitpur. Daily, weekly, and monthly plans with simple booking and transparent pricing.
-          </motion.p>
+          </p>
 
           {/* CTA buttons */}
-          <motion.div
-            initial={{ y: 12 }}
-animate={{ y: 0 }}
-            transition={{ delay: 0.55, duration: 0.55 }}
+          <div
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
             <a
@@ -102,24 +88,21 @@ animate={{ y: 0 }}
             >
               View Our Fleet
             </a>
-          </motion.div>
+          </div>
 
           {/* Trust strip */}
-          <motion.div
-          
-            className="mt-12 border-t border-white/8 pt-7"
-          >
+          <div className="mt-12 border-t border-white/8 pt-7">
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-              {trustItems.map((item) => (
-                <div key={item} className="flex items-center justify-center rounded-2xl bg-white/5 px-3 py-3 text-center">
+              {trustItems.map(({ key, content }) => (
+                <div key={key} className="flex items-center justify-center rounded-2xl bg-white/5 px-3 py-3 text-center">
                   <span className="text-[13px] font-semibold text-white/90 leading-tight">
-                    {item}
+                    {content}
                   </span>
                 </div>
               ))}
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* ── Right column — logo animation ── */}
         <div className="relative flex w-full items-center justify-center lg:w-[46%]">
@@ -134,26 +117,20 @@ animate={{ y: 0 }}
           />
 
           {/* Floating scooter */}
-          <motion.div
-            animate={{ y: [-12, 12, -12] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative z-10"
-          >
+          <div className="relative z-10 animate-float motion-reduce:animate-none">
             <Image
               src="/meroridea.svg"
               alt="MeroRide scooter rental Kathmandu"
-              width={440}
-              height={440}
+              width={390}
+              height={295}
               className="h-auto w-full max-w-[400px] object-contain drop-shadow-2xl lg:max-w-[440px]"
-              priority
+              sizes="(max-width: 440px) calc(100vw - 2.5rem), (max-width: 1023px) 400px, 440px"
+              preload
             />
-          </motion.div>
+          </div>
 
           {/* Floating price chip */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          <div
             className="absolute bottom-4 left-0 z-20 rounded-2xl border border-white/10 bg-[#0a0f2e]/90 px-4 py-3 shadow-xl backdrop-blur-md lg:bottom-10 lg:left-4"
           >
             <p className="text-[22px] font-black text-white leading-none">
@@ -161,13 +138,10 @@ animate={{ y: 0 }}
               <span className="text-[13px] font-normal text-white/40">/day</span>
             </p>
             <p className="mt-0.5 text-[11px] text-white/40">No hidden charges</p>
-          </motion.div>
+          </div>
 
           {/* Floating review chip */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          <div
             className="absolute -top-2 -right-6 z-20 flex items-center gap-2 rounded-2xl border border-white/10 bg-[#0a0f2e]/90 px-4 py-3 shadow-xl backdrop-blur-md lg:-top-4 lg:-right-8"
           >
             <div className="flex text-yellow-400 text-[13px] leading-none">
@@ -175,9 +149,9 @@ animate={{ y: 0 }}
             </div>
             <div>
               <p className="text-[12px] font-bold text-white leading-none">{GOOGLE_RATING} Rating</p>
-<p className="text-[10px] text-white/40">{GOOGLE_REVIEW_COUNT} reviews</p>
+              <p className="text-[10px] text-white/40">{GOOGLE_REVIEW_COUNT} reviews</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
